@@ -16,3 +16,42 @@ var svg = d3.select("body").append("svg")
 var chart = svg.append("g")
       .classed("display", true)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var x = d3.scale.linear()
+          .domain(d3.extent(data, function(d){
+            return d.age
+          }))
+          .range([0, width])
+var y = d3.scale.linear()
+          .domain([1,5])
+          .range([height,0])
+
+function plot(params){
+  //enter
+  this.selectAll('.point')
+      .data(params.data)
+      .enter()
+          .append('circle')
+          .classed('point', true)
+  //update
+  this.selectAll('.point')
+      .attr('r', 2)
+      .attr('cx', function(d){
+        return x(d.age)
+      })
+      .attr('cy', function(d){
+        return y(d.glazed)
+      })
+  //exit
+  this.selectAll('.point')
+    .data(params.data)
+    .exit()
+    .remove()
+}
+
+plot.call(chart, {
+  data: data,
+  axes: {
+    x: '',
+    y:''
+  }
+})
