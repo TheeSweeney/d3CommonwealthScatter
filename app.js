@@ -26,38 +26,63 @@ var xAxis = d3.svg.axis()
               .scale(x)
               .orient('bottom')
               .ticks(0)
-              .tickSize(0)
-
 var yAxis = d3.svg.axis()
               .scale(y)
               .orient('left')
               .ticks(0)
+var linearColorScale = d3.scale.linear()
+                        .domain([1, 11])
+                        .range(['#4ABDBC','#044C7F']);
 //color gradient for y axis
 var defs = svg.append('defs')
 
-var gradient = defs.append('linearGradient')
-                  .attr('id', 'svgGradient')
+var yGradient = defs.append('linearGradient')//TODO prob more efficient way to do these gradients
+                  .attr('id', 'svgYGradient')
                   .attr('x1', '0%')
                   .attr('x2', '0%')
                   .attr('y1', '0%')
                   .attr('y2', '100%')
-gradient.append('stop')
+yGradient.append('stop')
         .attr('class', 'start')
         .attr('offset', '0%')
         .attr('stop-color', '#4ABDBC')
         .attr('stop-opacity', 1);
 
-gradient.append('stop')
+yGradient.append('stop')
         .attr('class', 'end')
         .attr('offset', '100%')
         .attr('stop-color', '#044C7F')
         .attr('stop-opacity', 1);
+
+var xGradient = defs.append('linearGradient')
+                  .attr('id', 'svgXGradient')
+                  .attr('x1', '0%')
+                  .attr('x2', '100%')
+                  .attr('y1', '0%')
+                  .attr('y2', '0%')
+xGradient.append('stop')
+        .attr('class', 'start')
+        .attr('offset', '0%')
+        .attr('stop-color', '#4ABDBC')
+        .attr('stop-opacity', 1);
+
+xGradient.append('stop')
+        .attr('class', 'end')
+        .attr('offset', '100%')
+        .attr('stop-color', '#044C7F')
+        .attr('stop-opacity', 1);
+
 
 function yAxesAndLabels(params) {//TODO factor out to prevent code repition in this and exhibit 3
     this.append('g')//y axis
         .classed('y axis grad', true)
         .attr('transform', 'translate(0,0)')
         .call(params.axis.y)
+    
+    this.append('g')//x axis
+        .classed('x axis grad', true)
+        .attr('transform', 'translate(10,' + (height + 10) + ')')
+        .call(params.axis.x)
 
 
     this.select('.y.axis')//Top Label
@@ -75,8 +100,6 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .attr('x',-10)
         .attr('y', height + 35)
         .text('Lower health system performance')    
-    this.select('.domain')
-        .attr("fill", "url(#svgGradient)")
 
     this.select('g')//top Triangle
         .append('path')
@@ -94,6 +117,11 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         })
         .attr('transform', 'translate(-35,' + (height - 30) + ')')
         .style('fill', '#044C7F')
+
+    svg.insert('text')
+      .attr('y', 40)
+      .classed('chartTitle', true)
+      .html("In the U.S., Worse Health System Performance Despite High Spending")
 }
 
 function plot(params){
@@ -107,12 +135,15 @@ function plot(params){
           .classed('point', true)
   //update
   this.selectAll('.point')
-      .attr('r', 2)
+      .attr('r', 4)
       .attr('cx', function(d){
         return x(d.x)
       })
       .attr('cy', function(d){
         return y(d.y)
+      })
+      .style('fill', function(d,i){
+        return linearColorScale(i)
       })
   //exit
   this.selectAll('.point')

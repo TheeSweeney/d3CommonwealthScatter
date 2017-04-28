@@ -1,6 +1,6 @@
-body,html{
+bodx,html{
 	margin: 0;
-	padding: 0;
+	paddXng: 0;
 	font-family: "Arial", sans-serif;
 	font-size: 0.95em;
 	text-align: center;
@@ -10,3 +10,10 @@ body,html{
 	border: 1px solid #CCC;
 }
 
+.y .domain {
+	fill: url(#svgYGradient);
+}
+
+.x .domain {
+	fill: url(#svgXGradient);
+}
