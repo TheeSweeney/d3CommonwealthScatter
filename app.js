@@ -17,12 +17,10 @@ var chart = svg.append("g")
       .classed("display", true)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 var x = d3.scale.linear()
-          .domain(d3.extent(data, function(d){
-            return d.age
-          }))
+          .domain([1.02,1.2])
           .range([0, width])
 var y = d3.scale.linear()
-          .domain([1,5])
+          .domain([0,1.5])
           .range([height,0])
 
 function plot(params){
@@ -36,10 +34,10 @@ function plot(params){
   this.selectAll('.point')
       .attr('r', 2)
       .attr('cx', function(d){
-        return x(d.age)
+        return x(d.x)
       })
       .attr('cy', function(d){
-        return y(d.glazed)
+        return y(d.y)
       })
   //exit
   this.selectAll('.point')
