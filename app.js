@@ -134,8 +134,13 @@ function plot(params){
       .enter()
           .append('circle')
           .classed('point', true)
+  this.selectAll('.pointLabel')
+      .data(params.data)
+      .enter()
+        .append('text')
+        .classed('pointLabel', true)
   //update
-  this.selectAll('.point')
+  this.selectAll('.point')//data points
       .attr('r', 4)
       .attr('cx', function(d){
         return x(d.x)
@@ -146,11 +151,26 @@ function plot(params){
       .style('fill', function(d,i){
         return linearColorScale(i)
       })
+  this.selectAll('.pointLabel')// country labels of data points
+    .attr('x', function(d, i){
+      return x(d.x)- d.country.length*5;
+    })
+    .attr('y', function(d, i){
+      return y(d.y) - 7;
+    })
+    .attr('fill', 'black')
+    .text(function(d, i){
+      return d.country
+    })
   //exit
   this.selectAll('.point')
     .data(params.data)
     .exit()
     .remove()
+  this.selectAll('.pointLabel')
+    .data(params.data)
+    .exit()
+    .remove();
 }
 
 plot.call(chart, {
