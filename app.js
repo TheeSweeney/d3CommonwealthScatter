@@ -119,7 +119,8 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .style('fill', '#044C7F')
 
     svg.insert('text')
-      .attr('y', 40)
+      .attr('y', 20)
+      .attr('x', 10)
       .classed('chartTitle', true)
       .html("In the U.S., Worse Health System Performance Despite High Spending")
 }
