@@ -27,3 +27,9 @@ bodx,html{
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+.avgLabel {
+  fill: #ccc;
+  text-anchor: left;
+  font-size: 18px;
+}

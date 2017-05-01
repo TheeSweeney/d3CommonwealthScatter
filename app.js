@@ -156,34 +156,29 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
             .append('path')
             .classed('avgLine', true)
 
-    // this.selectAll('.avgLabel')
-    // .data(avgData)
-    // .enter()
-    //   .append('text')
-    //   .classed('avgLabel', true)
+    this.selectAll('.avgLabel')
+    .data(avgData)
+    .enter()
+      .append('text')
+      .classed('avgLabel', true)
 
     //update
     this.selectAll('.avgLine')
-        .transition()
-        .duration(800)
         .attr('d', function(d){
-          console.log(d)
           return line(d);
         })
         
-    // this.selectAll('.avgLabel')
-    //     .transition()
-    //     .duration(800)
-    //     .attr('x', function(d, i){
-    //       return x(d.y)
-    //     })
-    //     .attr('y', function(d, i){
-    //       return y(d.x) - 8
-    //     })
-    //     .attr('fill', 'black')
-    //     .text(function(d, i){
-    //       return d.label
-    //     })
+    this.selectAll('.avgLabel')
+        .attr('x', function(d, i){
+          return x(d.x)
+        })
+        .attr('y', function(d, i){
+          return y(d.y) - 8
+        })
+        .attr('fill', 'black')
+        .text(function(d, i){
+          return d.label
+        })
 
     //exit
     this.selectAll('.avgLine')
