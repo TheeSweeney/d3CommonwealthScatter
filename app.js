@@ -33,6 +33,13 @@ var yAxis = d3.svg.axis()
 var linearColorScale = d3.scale.linear()
                         .domain([1, 11])
                         .range(['#4ABDBC','#044C7F']);
+var line = d3.svg.line()
+      .x(function(d){
+        return x(d.x);
+      })
+      .y(function(d){
+        return y(d.y);
+      });
 //color gradient for y axis
 var defs = svg.append('defs')
 
@@ -134,6 +141,61 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         })
         .attr('transform', 'translate(' + (width - 20) + ',' + (height + 45) + ') rotate(270)')
         .style('fill', '#044C7F')
+
+
+    //average/avg line
+    var avgData = [//TODO Average line helper
+      {y: 1.0016, x: 1.025, label: "Eleven-country Average"},
+      {y: 1.0016, x: 1.2}
+    ]
+
+    //enter
+    this.selectAll('.avgLine')
+        .data([avgData])
+        .enter()
+            .append('path')
+            .classed('avgLine', true)
+
+    // this.selectAll('.avgLabel')
+    // .data(avgData)
+    // .enter()
+    //   .append('text')
+    //   .classed('avgLabel', true)
+
+    //update
+    this.selectAll('.avgLine')
+        .transition()
+        .duration(800)
+        .attr('d', function(d){
+          console.log(d)
+          return line(d);
+        })
+        
+    // this.selectAll('.avgLabel')
+    //     .transition()
+    //     .duration(800)
+    //     .attr('x', function(d, i){
+    //       return x(d.y)
+    //     })
+    //     .attr('y', function(d, i){
+    //       return y(d.x) - 8
+    //     })
+    //     .attr('fill', 'black')
+    //     .text(function(d, i){
+    //       return d.label
+    //     })
+
+    //exit
+    this.selectAll('.avgLine')
+        .data([avgData])
+        .exit()
+        .remove();
+
+    this.selectAll('.avgLabel')
+      .data(avgData)
+      .exit()
+      .remove()
+
 
     svg.insert('text')
       .attr('y', 40)

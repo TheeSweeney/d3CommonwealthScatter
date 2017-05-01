@@ -21,3 +21,9 @@ bodx,html{
 .x .domain {
 	fill: url(#svgXGradient);
 }
+
+.avgLine{
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
