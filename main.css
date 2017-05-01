@@ -6,6 +6,10 @@ bodx,html{
 	text-align: center;
 }
 
+#chartTitle{
+  font-size: 22px;
+}
+
 #chart{
 	border: 1px solid #CCC;
 }

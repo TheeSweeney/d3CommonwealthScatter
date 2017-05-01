@@ -1,8 +1,8 @@
 var w = 800;
 var h = 450;
 var margin = {
-  top: 58,
-  bottom: 100,
+  top: 98,
+  bottom: 60,
   left: 80,
   right: 40
 };
@@ -119,9 +119,9 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .style('fill', '#044C7F')
 
     svg.insert('text')
-      .attr('y', 20)
+      .attr('y', 40)
       .attr('x', 10)
-      .classed('chartTitle', true)
+      .attr('id', 'chartTitle')
       .html("In the U.S., Worse Health System Performance Despite High Spending")
 }
 
