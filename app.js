@@ -153,10 +153,14 @@ function plot(params){
       })
   this.selectAll('.pointLabel')// country labels of data points
     .attr('x', function(d, i){
-      return x(d.x)- d.country.length*5;
+      if(d.labelX === 'left') return x(d.x) - d.country.length*11;
+      if(d.labelX === 'right') return x(d.x) + 5; 
+      if(d.labelX === 'center') return x(d.x) - 20;     
     })
     .attr('y', function(d, i){
-      return y(d.y) - 7;
+      if(d.labelY === 'top') return y(d.y) - 2;
+      if(d.labelY === 'center') return y(d.y) + 5;
+      if(d.labelY === 'bottom') return y(d.y) + 25;       
     })
     .attr('fill', 'black')
     .text(function(d, i){
