@@ -101,7 +101,7 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .attr('y', height + 35)
         .text('Lower health system performance')    
 
-    this.select('g')//top Triangle
+    this.select('g')//yTop Triangle
         .append('path')
         .attr('d', function(d){
           return 'M 22,40 42,40 32,22 z';
@@ -110,12 +110,29 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .style('fill', '#4ABDBC')
 
 
-    this.select('g')//bottom Triangle
+    this.select('g')// yBottom Triangle
         .append('path')
         .attr('d', function(d){
           return 'M 22,28 42,28 32,46 z';
         })
-        .attr('transform', 'translate(-35,' + (height - 30) + ')')
+        .attr('transform', 'translate(-35,' + (height - 35) + ')')
+        .style('fill', '#044C7F')
+
+    this.select('g')// xLeft Triangle
+        .append('path')
+        .attr('d', function(d){
+          return 'M 22,40 42,40 32,22 z';
+        })
+        .attr('transform', 'translate(-25,' + (height + 45) + ') rotate(270)')
+        .style('fill', '#4ABDBC')
+
+
+    this.select('g')// xRight Triangle
+        .append('path')
+        .attr('d', function(d){
+          return 'M 22,28 42,28 32,46 z';
+        })
+        .attr('transform', 'translate(' + (width - 20) + ',' + (height + 45) + ') rotate(270)')
         .style('fill', '#044C7F')
 
     svg.insert('text')
