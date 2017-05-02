@@ -91,8 +91,7 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .attr('transform', 'translate(10,' + (height + 10) + ')')
         .call(params.axis.x)
 
-
-    this.select('.y.axis')//Top Label
+    this.select('.y.axis')// yAxis Top Label
         .append('text')
         .style('font-size', '16px')
         .style('fill', '#4ABDBC')
@@ -116,7 +115,7 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .attr('y', 44)
         .text('performance')
 
-     this.select('.y.axis')//Bottom Label
+     this.select('.y.axis')// yAxis Bottom Label
         .append('text')
         .style('font-size', '16px')
         .style('fill', '#044C7F')
@@ -139,6 +138,23 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .attr('x', -115)
         .attr('y', height + 14)
         .text('performance')    
+
+    this.select('.x.axis')// xAxis Left Label
+        .append('text')
+        .style('font-size', '16px')//TODO factor out styling into CSS
+        .style('fill', '#4ABDBC')
+        .attr('x', 0)
+        .attr('y', 30)
+        .text('Lower health care spending')
+
+    this.select('.x.axis')// xAxis Right Label
+        .append('text')
+        .style('text-anchor', 'end')
+        .style('font-size', '16px')
+        .style('fill', '#044C7F')
+        .attr('x', width)
+        .attr('y', 30)
+        .text('Higher health care spending')
 
     this.select('g')//yTop Triangle
         .append('path')
