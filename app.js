@@ -1,5 +1,5 @@
 var w = 900;
-var h = 450;
+var h = 550;
 var margin = {
   top: 98,
   bottom: 60,
