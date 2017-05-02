@@ -94,7 +94,7 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
 
     this.select('.y.axis')//Top Label
         .append('text')
-        .style('font-size', '18px')
+        .style('font-size', '16px')
         .style('fill', '#4ABDBC')
         .attr('x', -70)
         .attr('y',10)
@@ -102,28 +102,43 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
 
     this.select('.y.axis')
         .append('text')
-        .style('font-size', '18px')
+        .style('font-size', '16px')
         .style('fill', '#4ABDBC')
-        .attr('x', -127)
+        .attr('x', -122)
         .attr('y',27)
         .text('health system')
 
     this.select('.y.axis')
         .append('text')
-        .style('font-size', '18px')
+        .style('font-size', '16px')
         .style('fill', '#4ABDBC')
-        .attr('x', -117)
-        .attr('y',44)
+        .attr('x', -112)
+        .attr('y', 44)
         .text('performance')
 
-
-    this.select('.y.axis')//Bottom Label
+     this.select('.y.axis')//Bottom Label
         .append('text')
-        .style('font-size', '18px')
+        .style('font-size', '16px')
         .style('fill', '#044C7F')
-        .attr('x',-10)
-        .attr('y', height + 35)
-        .text('Lower health system performance')    
+        .attr('x', -70)
+        .attr('y', height - 20)
+        .text('Lower')
+
+    this.select('.y.axis')
+        .append('text')
+        .style('font-size', '16px')
+        .style('fill', '#044C7F')
+        .attr('x', -125)
+        .attr('y', height - 3)
+        .text('health system')
+
+    this.select('.y.axis')
+        .append('text')
+        .style('font-size', '16px')
+        .style('fill', '#044C7F')
+        .attr('x', -115)
+        .attr('y', height + 14)
+        .text('performance')    
 
     this.select('g')//yTop Triangle
         .append('path')
