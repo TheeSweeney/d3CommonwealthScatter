@@ -1,9 +1,9 @@
-var w = 800;
+var w = 900;
 var h = 450;
 var margin = {
   top: 98,
   bottom: 60,
-  left: 40,
+  left: 140,
   right: 40
 };
 var width = w - margin.left - margin.right;
@@ -96,9 +96,26 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
         .append('text')
         .style('font-size', '18px')
         .style('fill', '#4ABDBC')
-        .attr('x',-10)
-        .attr('y',-20)
-        .text('Higher health system performance')
+        .attr('x', -70)
+        .attr('y',10)
+        .text('Higher')
+
+    this.select('.y.axis')
+        .append('text')
+        .style('font-size', '18px')
+        .style('fill', '#4ABDBC')
+        .attr('x', -127)
+        .attr('y',27)
+        .text('health system')
+
+    this.select('.y.axis')
+        .append('text')
+        .style('font-size', '18px')
+        .style('fill', '#4ABDBC')
+        .attr('x', -117)
+        .attr('y',44)
+        .text('performance')
+
 
     this.select('.y.axis')//Bottom Label
         .append('text')
