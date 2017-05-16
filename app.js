@@ -49,6 +49,7 @@ var yGradient = defs.append('linearGradient')//TODO prob more efficient way to d
                   .attr('x2', '0%')
                   .attr('y1', '0%')
                   .attr('y2', '100%')
+
 yGradient.append('stop')
         .attr('class', 'start')
         .attr('offset', '0%')
@@ -299,10 +300,45 @@ function plot(params){
     .remove();
 }
 
+function resizeFive(params){
+  w = window.outerWidth - 50;
+  h = w * .625 - 50;
+
+  width = w - margin.left - margin.right;
+  height = h - margin.top - margin.bottom;
+
+  x = d3.scale.linear()
+        .domain([1.02,1.2])
+        .range([0, width])
+  y = d3.scale.linear()
+        .domain([0,1.5])
+        .range([height,0])
+
+  xAxis = d3.svg.axis()
+              .scale(x)
+              .orient('bottom')
+              .ticks(0)
+  yAxis = d3.svg.axis()
+              .scale(y)
+              .orient('left')
+              .ticks(0)
+
+  d3.select(this.node().parentNode)//resize svg element
+      .attr('height', h)
+      .attr('width', w)
+  
+  
+}
+
 plot.call(chart, {
   data: data,
   axis: {
     x: xAxis,
     y: yAxis
   }
+})
+
+
+window.addEventListener('resize', function(){
+  resizeFive.call(chart);
 })
