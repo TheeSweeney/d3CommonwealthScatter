@@ -250,7 +250,7 @@ function yAxesAndLabels(params, height, width) {//TODO factor out to prevent cod
 
 function plot(params){
 
-  yAxesAndLabels.call(this, params, height, width)
+  
   //enter
   this.selectAll('.point')
       .data(params.data)
@@ -342,6 +342,14 @@ function resizeFive(params){
 
   
 }
+
+yAxesAndLabels.call(chart, {
+    data: data,
+    axis: {
+      x: xAxis,
+      y: yAxis
+    }
+  }, height, width)
 
 plot.call(chart, {
   data: data,
