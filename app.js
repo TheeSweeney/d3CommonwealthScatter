@@ -81,7 +81,7 @@ xGradient.append('stop')
         .attr('stop-opacity', 1);
 
 
-function yAxesAndLabels(params) {//TODO factor out to prevent code repition in this and exhibit 3
+function yAxesAndLabels(params, height, width) {//TODO factor out to prevent code repition in this and exhibit 3
     this.append('g')//y axis
         .classed('y axis grad', true)
         .attr('transform', 'translate(0,0)')
@@ -250,7 +250,7 @@ function yAxesAndLabels(params) {//TODO factor out to prevent code repition in t
 
 function plot(params){
 
-  yAxesAndLabels.call(this, params)
+  yAxesAndLabels.call(this, params, height, width)
   //enter
   this.selectAll('.point')
       .data(params.data)
@@ -323,10 +323,23 @@ function resizeFive(params){
               .orient('left')
               .ticks(0)
 
+  var params = {
+      data: data,
+      axis: {
+        x: xAxis,
+        y: yAxis
+      }
+  }
+
   d3.select(this.node().parentNode)//resize svg element
       .attr('height', h)
       .attr('width', w)
+
+  this.selectAll('g')
+      .remove();
   
+  yAxesAndLabels.call(this, params, height, width)
+
   
 }
 
