@@ -335,10 +335,12 @@ function resizeFive(params){
       .attr('height', h)
       .attr('width', w)
 
-  this.selectAll('g')
+  this.selectAll('g')//remove axes and average line
       .remove();
   
   yAxesAndLabels.call(this, params, height, width)
+
+  plot.call(chart, params)
 
   
 }
